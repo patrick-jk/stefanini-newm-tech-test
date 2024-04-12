@@ -27,6 +27,10 @@ Feito isso, espere a aplicação ser inicializada. Após isso entre na pasta app
 Dentro da pasta app, agora execute:
 > npm start
 
+Nesse momento, caso a aplicação apresente erro, execute o comando abaixo:
+
+> npm install react-scripts --save
+
 Pronto! A aplicação já deve estar executando corretamente.
 
 ## Endpoints
