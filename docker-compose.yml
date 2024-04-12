@@ -1,31 +1,44 @@
 version: '2.4'
 x-database-variables: &database-variables
-  SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/task?createDatabaseIfNotExist=true
+  SPRING_DATASOURCE_URL: jdbc:mysql://tasks_mysql:3306/task?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
   SPRING_DATASOURCE_USERNAME: root
   SPRING_DATASOURCE_PASSWORD: root
 
 services:
   db:
     image: mysql
-    container_name: mysql
+    container_name: tasks_mysql
     environment:
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: "task"
+      MYSQL_USER: "root"
+      MYSQL_ROOT_PASSWORD: "root"
     ports:
       - "3306:3306"
+    networks:
+      - todo-list-network
     volumes:
       - task_data:/var/lib/mysql
     mem_limit: 512m
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 5
 
-  stefanini-newm-todo-list:
+  application:
     image: patrickviolin/stefanini-newm-todo-list:0.0.1-SNAPSHOT
     ports:
       - "8080:8080"
+    networks:
+      - todo-list-network
     environment:
       <<: *database-variables
     mem_limit: 512m
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   task_data:
+
+networks:
+  todo-list-network:
