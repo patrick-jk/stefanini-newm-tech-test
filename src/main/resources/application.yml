@@ -3,6 +3,8 @@ server:
     include-stacktrace: on_param
   servlet:
     context-path:
+  tomcat:
+    relaxed-query-chars: '|,{,},[,]'
 
 spring:
   datasource:

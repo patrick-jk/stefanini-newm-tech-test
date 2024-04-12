@@ -1,0 +1,37 @@
+.content {
+    border: #053e8b 4px solid;
+    border-radius: 10px;
+    padding: 20px 20px 10px 20px;
+    margin-bottom: 15px;
+}
+
+.task-title {
+    font-size: 22px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.task-description {
+    font-size: 16px;
+}
+
+.task-status {
+    font-size: 16px;
+}
+
+.task-status-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.viewDetailsBtn {
+    background-color: #439e35;
+    color: #efefef;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 17px;
+}
