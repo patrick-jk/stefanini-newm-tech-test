@@ -5,6 +5,12 @@ body {
     align-items: center;
 }
 
+.logo {
+    display: inline;
+    margin-bottom: 20px;
+    width: 200px;
+}
+
 .RootContainer {
     max-width: 800px;
     margin: 0 auto;

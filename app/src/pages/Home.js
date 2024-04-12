@@ -8,19 +8,21 @@ import Search from "../components/Search";
 const Home = () => {
     const [taskItems, setTaskItems] = useState(null);
     const [page, setPage] = useState(0);
-    const [search, setSearch] = useState("");
+    const pageSize = 100;
 
+    useEffect(() => {
+        fetch(`http://localhost:8080/tasks?page=${page}&size=${pageSize}&sort=title`)
+            .then(response => response.json())
+            .then(data => setTaskItems(data));
+    }, [page]);
+
+    const [search, setSearch] = useState("");
     let navigate = useNavigate();
+
     const createTaskRoute = () => {
         let path = "/createtask";
         navigate(path);
     }
-
-    useEffect(() => {
-        fetch(`http://localhost:8080/tasks?page=${page}&size=20&sort=title`)
-            .then(response => response.json())
-            .then(data => setTaskItems(data));
-    }, [page]);
 
     return (
         <div className="RootContainer">

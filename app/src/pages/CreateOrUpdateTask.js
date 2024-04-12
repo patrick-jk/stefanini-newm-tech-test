@@ -43,7 +43,6 @@ const CreateOrUpdateTask = (props) => {
                     id: task.id,
                 })
             }).then(response => {
-                console.log(response.statusCode);
                 if (response.ok) {
                     alert("Tarefa deletada com sucesso");
                     setTaskTitle("");
@@ -80,7 +79,7 @@ const CreateOrUpdateTask = (props) => {
                 })
             }).then(response => {
                 if (response.ok) {
-                    alert("Tarefa criada com sucesso");
+                    alert(`Tarefa ${dbMethod === "Create" ? "criada" : "atualizada"} com sucesso`);
                     setTaskTitle("");
                     setTaskDescription("");
                     setTaskStatus("");
@@ -114,7 +113,8 @@ const CreateOrUpdateTask = (props) => {
 
                 <button className="btn-action" type="submit">{changeText}</button>
             </form>
-            <button className={dbMethod === "Update" ? 'btn-action delete-task' : 'btn-action delete-task hidden'} onClick={handleDelete}>Deletar
+            <button className={dbMethod === "Update" ? 'btn-action delete-task' : 'btn-action delete-task hidden'}
+                    onClick={handleDelete}>Deletar
             </button>
             <button className="btn-action cancel-task" onClick={returnToHomeRoute}>Cancelar</button>
         </div>
