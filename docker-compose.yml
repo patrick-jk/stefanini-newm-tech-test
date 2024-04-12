@@ -9,9 +9,7 @@ services:
     image: mysql
     container_name: tasks_mysql
     environment:
-      MYSQL_DATABASE: "task"
-      MYSQL_USER: "root"
-      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
     networks:
